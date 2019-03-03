@@ -1,0 +1,9 @@
+{
+  "name": "class-traits",
+  "version": "0.0.1",
+  "description": "Implementation of trait feature for ES6 classes.",
+  "main": "index.js",
+  "author": "Blue-Hoopoe",
+  "license": "MIT",
+  "private": false
+}
