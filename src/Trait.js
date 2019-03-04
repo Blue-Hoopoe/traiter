@@ -17,6 +17,15 @@ class Trait {
      * @param {Class} Base Class to be passed into blueprint (constructor) function.
      */
     assemble(Base) {
+        let assembled;
+        try {
+            assembled = this.blueprint(Base);
+        } catch(exception) {
+            throw new Error(`There was a problem with a trait blueprint. More info: ${exception.message}`);
+        }
+        if (assembled.constructor === undefined || assembled.constructor.name !== `Function`) {
+            throw new Error(`Trait's blueprint did not returned a class definition.`);
+        }
         return this.blueprint(Base);
     }
 }
@@ -30,7 +39,7 @@ const combiner = (Base, ...traits) => {
     let Mutated = Base;
     traits.forEach(trait => {
         if (!(trait instanceof Trait)) {
-            throw new Error(`Trait must an instance of 'Trait' class.`);
+            throw new Error(`Trait must be an instance of 'Trait' class.`);
         }
         Mutated = trait.assemble(Mutated);
     });
