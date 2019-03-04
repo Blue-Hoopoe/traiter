@@ -28,6 +28,13 @@ class Trait {
         }
         return this.blueprint(Base);
     }
+
+    /**
+     * Returns assembled blueprint of empty stub class.
+     */
+    stub() {
+        return this.assemble(class {});
+    }
 }
 
 /**
